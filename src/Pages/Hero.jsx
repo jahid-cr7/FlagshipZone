@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import banner from "../assets/images/banner.png";
 import { IoSearchSharp } from "react-icons/io5";
-const Hero = ({handleSearch}) => {
+const Hero = ({ handleSearch }) => {
   const [searchText, setSearchText] = useState("");
-  console.log(searchText);
+
   return (
     <div>
       <img src={banner} alt="" className="w-full mx-auto md:max-w-md mt-10" />
@@ -16,10 +16,16 @@ const Hero = ({handleSearch}) => {
           flagship phones of the current time - FlagshipFaceOff
         </p>
       </div>
-      <form className="flex lg:flex-row md:flex-row flex-col justify-center items-center mt-10 gap-3">
+      <form
+        onSubmit={(event) => {
+          handleSearch(event, searchText);
+          setSearchText("");
+        }}
+        className="flex lg:flex-row md:flex-row flex-col justify-center items-center mt-10 gap-3"
+      >
         <input
-        value={searchText}
-        onChange={(e) => setSearchText(e.target.value)}
+          value={searchText}
+          onChange={(event) => setSearchText(event.target.value)}
           type="text"
           name="SearchBar"
           placeholder="Search Phone"
@@ -27,7 +33,7 @@ const Hero = ({handleSearch}) => {
         />
         <button
           type="submit"
-          className="relative inline-flex items-center px-8 md:px-12 lg:px-12 py-1 md:py-2 lg:py-2 overflow-hidden text-lg font-medium text-white border-2 border-amber-500 rounded-full hover:text-white group hover:bg-gray-50"
+          className="button relative inline-flex items-center px-8 md:px-12 lg:px-12 py-1 md:py-2 lg:py-2 overflow-hidden text-lg font-medium text-white border-2 border-amber-500 rounded-full hover:text-white group hover:bg-gray-50"
         >
           <span className="absolute left-0 block w-full h-0 transition-all bg-amber-500 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
           <span className="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
