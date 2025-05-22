@@ -5,12 +5,15 @@ import PhoneDetails from "./PhoneDetails";
 
 const Home = ({ LoadHome }) => {
   const MobileData = use(LoadHome);
-  console.log(MobileData);
+  
   const [phones, setPhones] = useState(MobileData);
 
   const handleSearch = (event, text) => {
     event.preventDefault();
-
+    if (text === "") {
+      setPhones(MobileData);
+      return;
+    }
     const searchedPhones = MobileData.filter(
       (phone) =>
         phone.name.toLowerCase().split(" ").includes(text.toLowerCase()) ||
@@ -24,7 +27,6 @@ const Home = ({ LoadHome }) => {
       <Hero handleSearch={handleSearch}></Hero>
 
       <PhoneContainer MobileData={phones}></PhoneContainer>
-      <PhoneDetails></PhoneDetails>
     </div>
   );
 };
